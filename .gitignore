@@ -54,3 +54,6 @@ docs/_build/
 
 # IDEA
 .idea
+
+# Vagrant files
+.vagrant
