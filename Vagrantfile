@@ -16,7 +16,7 @@ rabbitmqctl add_user async_rabbitmq async_rabbitmq
 rabbitmqctl add_vhost async_rabbitmq
 rabbitmqctl set_permissions -p async_rabbitmq async_rabbitmq ".*" ".*" ".*"
 rabbitmqctl set_user_tags async_rabbitmq administrator
-wget --auth-no-challenge --http-user=async_rabbitmq --http-password=async_rabbitmq --output-document=/usr/local/bin/rabbitmqadmin http://127.0.0.1:55672/cli
+wget --auth-no-challenge --http-user=async_rabbitmq --http-password=async_rabbitmq --output-document=/usr/local/bin/rabbitmqadmin http://127.0.0.1:55672/cli/rabbitmqadmin
 chmod +x /usr/local/bin/rabbitmqadmin
 rabbitmqadmin --bash-completion > /etc/bash_completion.d/rabbitmqadmin
 rabbitmqadmin --vhost=async_rabbitmq -u async_rabbitmq -p async_rabbitmq declare exchange name=tasks type=topic
