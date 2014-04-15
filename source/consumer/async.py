@@ -1,5 +1,6 @@
 import gevent.monkey
 import kombu
+import logging
 import time
 
 gevent.monkey.patch_all()
@@ -7,6 +8,8 @@ gevent.monkey.patch_all()
 dsn = 'amqp://async_rabbitmq:async_rabbitmq@localhost:5672/async_rabbitmq'
 
 greenlets = {}
+
+logging.basicConfig(level='DEBUG')
 
 
 def do_work(body, message):

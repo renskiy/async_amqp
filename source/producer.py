@@ -1,6 +1,9 @@
 from kombu import Connection, Exchange
+import logging
 
 dsn = 'amqp://async_rabbitmq:async_rabbitmq@localhost:5672/async_rabbitmq'
+
+logging.basicConfig(level='DEBUG')
 
 
 def send_messages(number_of_messages=1):

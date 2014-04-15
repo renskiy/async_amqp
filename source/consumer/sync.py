@@ -1,7 +1,10 @@
 import kombu
+import logging
 import time
 
 dsn = 'amqp://async_rabbitmq:async_rabbitmq@localhost:5672/async_rabbitmq'
+
+logging.basicConfig(level='DEBUG')
 
 
 def do_work(body, message):
