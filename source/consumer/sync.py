@@ -20,8 +20,12 @@ def on_message(body, message):
 def main():
     try:
         with kombu.Connection(dsn) as connection:
-            queues = (kombu.Queue(name='mail'), )
-            with connection.Consumer(queues=queues, callbacks=(on_message, )):
+            queue = kombu.Queue(name='mail')
+            with connection.Consumer(
+                queues=(queue, ),
+                callbacks=(on_message, ),
+                auto_declare=False,
+            ):
                 while True:
                     connection.drain_events()
     except KeyboardInterrupt:
