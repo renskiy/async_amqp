@@ -5,7 +5,7 @@ import time
 
 gevent.monkey.patch_all()
 
-dsn = 'amqp://async_rabbitmq:async_rabbitmq@localhost:5672/async_rabbitmq'
+dsn = 'pyamqp://async_rabbitmq:async_rabbitmq@localhost:5672/async_rabbitmq'
 
 greenlets = {}
 
