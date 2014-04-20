@@ -12,7 +12,12 @@ def send_messages(number_of_messages=1):
         producer = connection.Producer(exchange=exchange, auto_declare=False)
         for message_number in range(number_of_messages):
             routing_key = 'task.mail.{}'.format(message_number)
-            message = 'This is message #{}'.format(message_number)
+            message = dict(
+                subject='Message #{}'.format(message_number),
+                message='This is message #{}'.format(message_number),
+                from_email='no-reply@example.com',
+                recipient_list=('user@example.com', ),
+            )
             producer.publish(message, routing_key=routing_key)
     print('Successfully sent {} messages'.format(number_of_messages))
 
