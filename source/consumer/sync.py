@@ -19,8 +19,8 @@ def on_message(body, message):
 
 
 def main():
-    try:
-        with kombu.Connection(dsn) as connection:
+    with kombu.Connection(dsn) as connection:
+        try:
             queue = kombu.Queue(name='mail')
             with connection.Consumer(
                 queues=(queue, ),
@@ -29,8 +29,8 @@ def main():
             ):
                 while True:
                     connection.drain_events()
-    except KeyboardInterrupt:
-        pass
+        except KeyboardInterrupt:
+            pass
 
 
 if __name__ == '__main__':
