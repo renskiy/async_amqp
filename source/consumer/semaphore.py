@@ -17,7 +17,8 @@ semaphore = gevent.lock.Semaphore(5)
 
 def do_work(body, message):
     time.sleep(1)  # some useful work
-    print(body)
+    print("body = {body}, delivery_info = {delivery_info}".format(
+        body=body, delivery_info=message.delivery_info))
     message.ack()
     semaphore.release()
     del greenlets[id(gevent.getcurrent())]
