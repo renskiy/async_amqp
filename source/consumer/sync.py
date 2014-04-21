@@ -26,7 +26,6 @@ def main():
                 queues=(queue, ),
                 callbacks=(on_message, ),
                 auto_declare=False,
-                accept=('json', ),
             ):
                 while True:
                     connection.drain_events()
