@@ -7,15 +7,11 @@ dsn = 'amqp://async_rabbitmq:async_rabbitmq@localhost:5672/async_rabbitmq'
 logging.basicConfig(level='DEBUG')
 
 
-def do_work(body, message):
+def on_message(body, message):
     time.sleep(1)  # some useful work
     print("body = {body}, delivery_info = {delivery_info}".format(
         body=body, delivery_info=message.delivery_info))
     message.ack()
-
-
-def on_message(body, message):
-    do_work(body, message)
 
 
 def main():
