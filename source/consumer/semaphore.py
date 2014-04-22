@@ -40,6 +40,7 @@ def main():
             ):
                 while True:
                     semaphore.acquire() and connection.drain_events()
+                    gevent.sleep()  # release execution cursor
         except KeyboardInterrupt:
             gevent.joinall(greenlets.values())
 

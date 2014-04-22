@@ -36,6 +36,7 @@ def main():
             ):
                 while True:
                     connection.drain_events()
+                    gevent.sleep()  # release execution cursor
         except KeyboardInterrupt:
             gevent.joinall(greenlets.values())
 
