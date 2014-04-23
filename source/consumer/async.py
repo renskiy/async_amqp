@@ -1,9 +1,9 @@
 import gevent.monkey
+gevent.monkey.patch_all()
+
 import kombu
 import logging
 import time
-
-gevent.monkey.patch_all()
 
 dsn = 'pyamqp://async_rabbitmq:async_rabbitmq@localhost:5672/async_rabbitmq'
 
