@@ -1,9 +1,9 @@
 import gevent.monkey
+gevent.monkey.patch_all()
+
 import kombu
 import logging
 import time
-
-gevent.monkey.patch_all()
 
 dsn = 'pyamqp://async_rabbitmq:async_rabbitmq@localhost:5672/async_rabbitmq'
 
@@ -12,17 +12,24 @@ greenlets = {}
 logging.basicConfig(level='DEBUG')
 
 
-def do_work(body, message):
+def async(fn):
+    def _fn(*args, **kwargs):
+        fn(*args, **kwargs)
+        del greenlets[id(gevent.getcurrent())]
+
+    def spawn_greenlet(*args, **kwargs):
+        greenlet = gevent.spawn(_fn, *args, **kwargs)
+        greenlets[id(greenlet)] = greenlet
+
+    return spawn_greenlet
+
+
+@async
+def on_message(body, message):
     time.sleep(1)  # some useful work
     print("body = {body}, delivery_info = {delivery_info}".format(
         body=body, delivery_info=message.delivery_info))
     message.ack()
-    del greenlets[id(gevent.getcurrent())]
-
-
-def on_message(body, message):
-    greenlet = gevent.spawn(do_work, body, message)
-    greenlets[id(greenlet)] = greenlet
 
 
 def main():
@@ -36,6 +43,7 @@ def main():
             ):
                 while True:
                     connection.drain_events()
+                    gevent.sleep()  # release execution cursor
         except KeyboardInterrupt:
             gevent.joinall(greenlets.values())
 
