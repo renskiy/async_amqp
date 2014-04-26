@@ -1,5 +1,20 @@
-async_rabbitmq
+async_amqp
 ==============
+Conference materials.
 
-for Mac OS users: ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install -r requirements.txt
-http://kaspermunck.github.io/2014/03/fixing-clang-error/
+Requirements
+============
+* Vagrant
+* VirtualBox/VMware
+* Python 2.x
+
+Installation steps
+==================
+* Clone this repository and run vagrant from the root of project: `vagrant up`
+* Install Python requirements: `pip install -r requirements`
+
+Note for Mac OS users
+=====================
+If you have problem while installing gevent on your mac try this:
+
+    ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install -r requirements.txt
