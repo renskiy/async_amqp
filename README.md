@@ -11,7 +11,7 @@ Requirements
 Installation steps
 ==================
 * Clone this repository and run vagrant from the root of project: `vagrant up`
-* Install Python requirements: `pip install -r requirements`
+* Install Python requirements: `pip install -r requirements.txt`
 
 Note for Mac OS users
 =====================
