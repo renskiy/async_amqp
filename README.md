@@ -1,6 +1,6 @@
 Working with RabbitMQ using gevent and kombu
 ============================================
-Conference materials (code examples): [AMQP using Gevent + Kombu](http://youtu.be/KM9LNJmraZE)
+This repository contains conference materials and code examples. Watch video on youtube: [AMQP using Gevent + Kombu](http://youtu.be/KM9LNJmraZE)
 
 [![AMQP using Gevent + Kombu](http://img.youtube.com/vi/KM9LNJmraZE/0.jpg)](http://youtu.be/KM9LNJmraZE)
 
